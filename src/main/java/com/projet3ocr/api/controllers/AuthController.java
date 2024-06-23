@@ -1,9 +1,10 @@
 package com.projet3ocr.api.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.projet3ocr.api.dtos.RegisterUserDto;
+import com.projet3ocr.api.models.User;
+import com.projet3ocr.api.services.AuthService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
@@ -11,11 +12,11 @@ import java.util.HashMap;
 @RequestMapping("/api/auth")
 public class AuthController {
 
+    @Autowired
+    AuthService authService;
     @PostMapping("/register")
-    HashMap<String, String> registerAnUser(){
-        HashMap<String, String> response = new HashMap<>();
-
-        return response;
+    User registerAnUser(@RequestBody RegisterUserDto registerUserDto){
+        return authService.createUser(registerUserDto);
     }
 
     @PostMapping("/login")

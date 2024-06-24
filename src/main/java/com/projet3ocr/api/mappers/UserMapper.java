@@ -4,7 +4,9 @@ import com.projet3ocr.api.dtos.LoginUserDto;
 import com.projet3ocr.api.dtos.RegisterUserDto;
 import com.projet3ocr.api.dtos.UserDto;
 import com.projet3ocr.api.models.User;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserMapper {
 
    public User toEntity(RegisterUserDto registerUserDto){

@@ -4,11 +4,12 @@ import com.projet3ocr.api.dtos.CreateRentalDto;
 import com.projet3ocr.api.dtos.RentalDto;
 import com.projet3ocr.api.models.Rental;
 import com.projet3ocr.api.models.User;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Component
 public class RentalMapper {
 
     public RentalDto toDto(Rental rentalEntity){

@@ -4,7 +4,9 @@ import com.projet3ocr.api.dtos.SendMessageDto;
 import com.projet3ocr.api.models.Message;
 import com.projet3ocr.api.models.Rental;
 import com.projet3ocr.api.models.User;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MessageMapper {
 
     public Message toEntity(SendMessageDto sendMessageDto , User user, Rental rental){

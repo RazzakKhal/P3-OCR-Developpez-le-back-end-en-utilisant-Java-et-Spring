@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface UserService {
 
-    UserDto getCurrentUser(Long id);
+    UserDto getOneUser(Long id);
 }

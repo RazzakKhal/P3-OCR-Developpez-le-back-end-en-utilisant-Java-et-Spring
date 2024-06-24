@@ -1,10 +1,10 @@
 package com.projet3ocr.api.responses;
 
-public enum ErrorsResponses {
+public enum UsersResponses {
     NOT_FOUNDED_USER("Utilisateur non trouvé");
 
     private final String value;
-    private ErrorsResponses(String value){
+    private UsersResponses(String value){
         this.value = value;
     }
 

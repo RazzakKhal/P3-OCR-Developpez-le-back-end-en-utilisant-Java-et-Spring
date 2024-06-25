@@ -1,7 +1,7 @@
 package com.projet3ocr.api.services;
 
-import com.projet3ocr.api.dtos.LoginUserDto;
-import com.projet3ocr.api.dtos.RegisterUserDto;
+import com.projet3ocr.api.dtos.receiveFromView.LoginUserDto;
+import com.projet3ocr.api.dtos.receiveFromView.RegisterUserDto;
 import com.projet3ocr.api.models.User;
 
 public interface AuthService {

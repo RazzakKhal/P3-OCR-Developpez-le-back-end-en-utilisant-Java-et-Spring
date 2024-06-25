@@ -1,9 +1,6 @@
 package com.projet3ocr.api.services;
 
-import com.projet3ocr.api.dtos.UserDto;
-import com.projet3ocr.api.models.User;
-
-import java.util.Optional;
+import com.projet3ocr.api.dtos.sendToView.UserDto;
 
 public interface UserService {
 

@@ -1,9 +1,8 @@
 package com.projet3ocr.api.services;
 
-import com.projet3ocr.api.dtos.CreateRentalDto;
-import com.projet3ocr.api.dtos.RentalDto;
-import com.projet3ocr.api.dtos.UpdateRentalDto;
-import com.projet3ocr.api.models.Rental;
+import com.projet3ocr.api.dtos.receiveFromView.CreateRentalDto;
+import com.projet3ocr.api.dtos.sendToView.RentalDto;
+import com.projet3ocr.api.dtos.receiveFromView.UpdateRentalDto;
 
 import java.util.HashMap;
 import java.util.List;

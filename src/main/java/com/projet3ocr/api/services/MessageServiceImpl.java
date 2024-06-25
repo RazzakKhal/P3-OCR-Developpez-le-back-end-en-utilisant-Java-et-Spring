@@ -1,6 +1,6 @@
 package com.projet3ocr.api.services;
 
-import com.projet3ocr.api.dtos.SendMessageDto;
+import com.projet3ocr.api.dtos.receiveFromView.SendMessageDto;
 import com.projet3ocr.api.mappers.MessageMapper;
 import com.projet3ocr.api.models.Rental;
 import com.projet3ocr.api.models.User;
@@ -30,7 +30,7 @@ public class MessageServiceImpl implements MessageService{
     public HashMap<String, String> postMessage(SendMessageDto sendMessageDto){
         HashMap<String, String> response = new HashMap<>();
 
-        Optional<User> optUser = userRepository.findById(sendMessageDto.getOwnerId());
+        Optional<User> optUser = userRepository.findById(sendMessageDto.getUserId());
         Optional<Rental> optRental = rentalRepository.findById(sendMessageDto.getRentalId());
 
         if(optRental.isEmpty() || optUser.isEmpty()){

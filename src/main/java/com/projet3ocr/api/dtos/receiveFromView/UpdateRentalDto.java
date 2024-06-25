@@ -1,4 +1,4 @@
-package com.projet3ocr.api.dtos;
+package com.projet3ocr.api.dtos.receiveFromView;
 
 import lombok.Data;
 

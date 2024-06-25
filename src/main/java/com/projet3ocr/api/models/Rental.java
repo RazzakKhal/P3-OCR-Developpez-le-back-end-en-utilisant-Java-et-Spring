@@ -3,8 +3,12 @@ package com.projet3ocr.api.models;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SourceType;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 
 @Entity
@@ -27,9 +31,11 @@ public class Rental {
     private String description;
 
     @Column(name = "created_at")
-    private Timestamp createdAt;
+    @CreationTimestamp(source = SourceType.DB)
+    private Instant createdAt;
     @Column(name = "updated_at")
-    private Timestamp updatedAt;
+    @UpdateTimestamp(source = SourceType.DB)
+    private Instant updatedAt;
 
     @ManyToOne
     @JoinColumn(name="owner_id",nullable = false)

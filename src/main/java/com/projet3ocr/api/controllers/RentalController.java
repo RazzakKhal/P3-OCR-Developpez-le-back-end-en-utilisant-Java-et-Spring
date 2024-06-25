@@ -1,9 +1,8 @@
 package com.projet3ocr.api.controllers;
 
-import com.projet3ocr.api.dtos.CreateRentalDto;
-import com.projet3ocr.api.dtos.RentalDto;
-import com.projet3ocr.api.dtos.UpdateRentalDto;
-import com.projet3ocr.api.models.Rental;
+import com.projet3ocr.api.dtos.receiveFromView.CreateRentalDto;
+import com.projet3ocr.api.dtos.sendToView.RentalDto;
+import com.projet3ocr.api.dtos.receiveFromView.UpdateRentalDto;
 import com.projet3ocr.api.services.RentalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +15,7 @@ import java.util.List;
 public class RentalController {
     @Autowired
     RentalService rentalService;
-    @GetMapping("/")
+    @GetMapping("")
     List<RentalDto> getAllRentals(){
         return rentalService.getAllRentals();
     }

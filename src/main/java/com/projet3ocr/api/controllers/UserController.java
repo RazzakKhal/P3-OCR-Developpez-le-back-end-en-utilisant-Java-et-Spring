@@ -1,6 +1,6 @@
 package com.projet3ocr.api.controllers;
 
-import com.projet3ocr.api.dtos.UserDto;
+import com.projet3ocr.api.dtos.sendToView.UserDto;
 import com.projet3ocr.api.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,7 +1,7 @@
 package com.projet3ocr.api.mappers;
 
-import com.projet3ocr.api.dtos.CreateRentalDto;
-import com.projet3ocr.api.dtos.RentalDto;
+import com.projet3ocr.api.dtos.receiveFromView.CreateRentalDto;
+import com.projet3ocr.api.dtos.sendToView.RentalDto;
 import com.projet3ocr.api.models.Rental;
 import com.projet3ocr.api.models.User;
 import org.springframework.stereotype.Component;

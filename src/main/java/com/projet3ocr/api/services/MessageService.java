@@ -1,6 +1,6 @@
 package com.projet3ocr.api.services;
 
-import com.projet3ocr.api.dtos.SendMessageDto;
+import com.projet3ocr.api.dtos.receiveFromView.SendMessageDto;
 
 import java.util.HashMap;
 

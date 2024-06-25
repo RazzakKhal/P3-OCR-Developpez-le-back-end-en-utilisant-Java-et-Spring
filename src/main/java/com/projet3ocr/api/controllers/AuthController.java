@@ -1,6 +1,6 @@
 package com.projet3ocr.api.controllers;
 
-import com.projet3ocr.api.dtos.RegisterUserDto;
+import com.projet3ocr.api.dtos.receiveFromView.RegisterUserDto;
 import com.projet3ocr.api.models.User;
 import com.projet3ocr.api.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;

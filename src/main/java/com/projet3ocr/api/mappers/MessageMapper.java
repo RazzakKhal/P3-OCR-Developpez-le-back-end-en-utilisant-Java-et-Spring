@@ -1,6 +1,6 @@
 package com.projet3ocr.api.mappers;
 
-import com.projet3ocr.api.dtos.SendMessageDto;
+import com.projet3ocr.api.dtos.receiveFromView.SendMessageDto;
 import com.projet3ocr.api.models.Message;
 import com.projet3ocr.api.models.Rental;
 import com.projet3ocr.api.models.User;

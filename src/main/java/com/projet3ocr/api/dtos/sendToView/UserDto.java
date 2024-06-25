@@ -1,15 +1,16 @@
-package com.projet3ocr.api.dtos;
+package com.projet3ocr.api.dtos.sendToView;
 
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 
 @Data
 public class UserDto {
     private Long id;
     private String name;
     private String email;
-    private Timestamp createdAt;
+    private Instant createdAt;
 
-    private Timestamp updatedAt;
+    private Instant updatedAt;
 }

@@ -11,17 +11,21 @@ import com.projet3ocr.api.repositories.UserRepository;
 import com.projet3ocr.api.responses.UsersResponses;
 import com.projet3ocr.api.responses.RentalResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class RentalServiceImpl implements RentalService{
-
+    @Autowired
+    ImageService imageService;
     @Autowired
     RentalRepository rentalRepository;
     @Autowired
@@ -30,10 +34,14 @@ public class RentalServiceImpl implements RentalService{
     @Autowired
     RentalMapper rentalMapper;
 
+    @Value("${api.url}")
+    private String APPLICATION_URL;
 
     @Override
-    public List<RentalDto> getAllRentals(){
-       return rentalMapper.toDto(rentalRepository.findAll());
+    public HashMap<String,List<RentalDto>> getAllRentals(){
+        HashMap<String,List<RentalDto>> response = new HashMap<>();
+        response.put("rentals", rentalMapper.toDto(rentalRepository.findAll()));
+        return response;
     }
 
     @Override
@@ -48,19 +56,32 @@ public class RentalServiceImpl implements RentalService{
     /**
      * Si utilisateur fourni depuis la path variable existe alors on créé notre Location
      * @param id
-     * @param rentalDto
+     * @param name
+     * @param surface
+     * @param price
+     * @param description
+     * @param picture
      * @return
      */
     @Override
-    public HashMap<String, String> postNewRental(Long id, CreateRentalDto rentalDto){
+    public HashMap<String, String> postNewRental(Long id, String name, Double surface, Double price, String description, MultipartFile picture) {
+        CreateRentalDto createRentalDto= new CreateRentalDto(name, surface, price, description, picture);
         HashMap<String,String> response = new HashMap<>();
         Optional<User> optUser = userRepository.findById(id);
         if(optUser.isEmpty()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, UsersResponses.NOT_FOUNDED_USER.getValue());
         }
-        Rental rental = rentalMapper.toEntity(rentalDto, optUser.get());
+        Rental rental = rentalMapper.toEntity(createRentalDto, optUser.get());
+
+        try{
+            String imageUrl = imageService.saveFileOnServerAndReturnFileUrl(picture);
+            rental.setPicture(APPLICATION_URL + imageUrl);
+        }catch(IOException exception){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, UsersResponses.NOT_FOUNDED_USER.getValue());
+        }
         rentalRepository.save(rental);
         response.put("message", RentalResponses.CREATED_RENTAL.getValue());
+
         return response;
     }
 

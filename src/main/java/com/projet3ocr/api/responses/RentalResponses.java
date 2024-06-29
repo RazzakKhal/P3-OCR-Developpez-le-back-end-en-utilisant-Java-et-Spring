@@ -5,7 +5,9 @@ public enum RentalResponses {
     NOT_FOUNDED_RENTAL("Rental not found !"),
     CREATED_RENTAL("Rental created !"),
     SIMILAR_RENTAL_EXISTING("A similar Rental already exist !"),
-    UPDATED_RENTAL("Rental updated !");
+    UPDATED_RENTAL("Rental updated !"),
+
+    IMAGE_PROBLEM("A problem occurred during image processing");
 
     private final String value;
     RentalResponses(String value){

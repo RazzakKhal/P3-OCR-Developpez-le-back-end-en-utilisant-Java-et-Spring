@@ -14,7 +14,7 @@ public interface RentalService {
 
     RentalDto getRentalById(Long id);
 
-    HashMap<String, String> putExistingRental(Long id, UpdateRentalDto rentalDto);
+    HashMap<String, String> putExistingRental(Long id, String name, Double surface, Double price, String description);
     HashMap<String, String> postNewRental(Long id, String name, Double surface, Double price, String description, MultipartFile picture);
 }
 

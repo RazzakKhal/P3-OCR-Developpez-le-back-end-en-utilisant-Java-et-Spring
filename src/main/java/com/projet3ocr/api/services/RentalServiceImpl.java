@@ -44,6 +44,11 @@ public class RentalServiceImpl implements RentalService{
         return response;
     }
 
+    /**
+     *
+     * @param id id de la location à récupérer
+     * @return
+     */
     @Override
     public RentalDto getRentalById(Long id){
         Optional<Rental> optRental = rentalRepository.findById(id);
@@ -55,7 +60,7 @@ public class RentalServiceImpl implements RentalService{
 
     /**
      * Si utilisateur fourni depuis la path variable existe alors on créé notre Location
-     * @param id
+     * @param id id de l'utilisateur a qui appartient la location
      * @param name
      * @param surface
      * @param price
@@ -65,7 +70,7 @@ public class RentalServiceImpl implements RentalService{
      */
     @Override
     public HashMap<String, String> postNewRental(Long id, String name, Double surface, Double price, String description, MultipartFile picture) {
-        CreateRentalDto createRentalDto= new CreateRentalDto(name, surface, price, description, picture);
+        CreateRentalDto createRentalDto= new CreateRentalDto(name, surface, price, description);
         HashMap<String,String> response = new HashMap<>();
         Optional<User> optUser = userRepository.findById(id);
         if(optUser.isEmpty()){
@@ -87,17 +92,18 @@ public class RentalServiceImpl implements RentalService{
 
     /**
      * Si location fourni depuis la path variable existe et a été modifié alors on l'update en BDD
-     * @param id
+     * @param id id de la location à modifier
      * @param rentalDto
      * @return
      */
     @Override
-    public HashMap<String, String> putExistingRental(Long id, UpdateRentalDto rentalDto){
+    public HashMap<String, String> putExistingRental(Long id, String name, Double surface, Double price, String description){
         HashMap<String,String> response = new HashMap<>();
         Optional<Rental> optRental = rentalRepository.findById(id);
         if(optRental.isEmpty()){
            throw new ResponseStatusException(HttpStatus.NOT_FOUND, RentalResponses.NOT_FOUNDED_RENTAL.getValue());
         }
+        UpdateRentalDto rentalDto = new UpdateRentalDto(name, surface, price, description);
         if(this.isAnUpdatedRental(rentalDto, optRental.get())){
             this.rentalRepository.save(this.applyModification(rentalDto,optRental.get()));
             response.put("message", RentalResponses.UPDATED_RENTAL.getValue());

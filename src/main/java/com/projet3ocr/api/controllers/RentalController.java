@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/rentals")
 public class RentalController {
@@ -37,7 +37,11 @@ public class RentalController {
         return rentalService.postNewRental(id, name, surface, price, description, picture);
     }
     @PutMapping("/{id}")
-    HashMap<String,String> putRental(@PathVariable Long id,@Valid @RequestBody UpdateRentalDto rentalDto){
-        return rentalService.putExistingRental(id, rentalDto);
+    HashMap<String,String> putRental(@PathVariable Long id,
+                                     @RequestParam("name") String name,
+                                     @RequestParam("surface") Double surface,
+                                     @RequestParam("price") Double price,
+                                     @RequestParam("description") String description){
+        return rentalService.putExistingRental(id, name, surface, price, description);
     }
 }

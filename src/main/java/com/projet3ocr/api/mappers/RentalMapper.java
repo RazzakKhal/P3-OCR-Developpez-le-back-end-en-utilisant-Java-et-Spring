@@ -43,7 +43,6 @@ public class RentalMapper {
         rental.setName(rentalDto.getName());
         rental.setSurface(rentalDto.getSurface());
         rental.setPrice(rentalDto.getPrice());
-        rental.setPicture(rentalDto.getPicture());
         rental.setDescription(rentalDto.getDescription());
         rental.setUser(user);
 

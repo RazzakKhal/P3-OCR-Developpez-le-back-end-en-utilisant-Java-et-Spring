@@ -34,6 +34,9 @@ public class AuthServiceImpl implements AuthService{
     PasswordSalter passwordSalter;
     @Override
     public Map<String, String> createUser(RegisterUserDto registerUserDto){
+        if(userRepository.findByEmail(registerUserDto.getEmail()).isPresent()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"un utilisateur avec cette identifiant existe déjà");
+        }
         User user= userMapper.toEntity(registerUserDto);
         user.setPassword(bCryptPasswordEncoder.encode(passwordSalter.saltPassword(user.getPassword())));
         userRepository.save(user);

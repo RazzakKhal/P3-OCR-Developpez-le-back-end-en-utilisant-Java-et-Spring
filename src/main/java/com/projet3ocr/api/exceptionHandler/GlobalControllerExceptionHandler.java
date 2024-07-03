@@ -33,7 +33,7 @@ class GlobalControllerExceptionHandler {
      * @param exception
      * @return
      */
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ResponseStatusException.class)
     public HashMap<String, String> handleMissingEntity(ResponseStatusException exception){
         HashMap<String, String> response = new HashMap<>();
@@ -41,4 +41,6 @@ class GlobalControllerExceptionHandler {
 
         return response;
     }
+
+
 }

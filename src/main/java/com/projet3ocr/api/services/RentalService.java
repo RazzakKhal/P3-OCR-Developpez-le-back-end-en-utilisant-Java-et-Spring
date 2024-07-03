@@ -8,13 +8,14 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public interface RentalService {
-    HashMap<String,List<RentalDto>> getAllRentals();
+    Map<String,List<RentalDto>> getAllRentals();
 
     RentalDto getRentalById(Long id);
 
-    HashMap<String, String> putExistingRental(Long id, String name, Double surface, Double price, String description);
-    HashMap<String, String> postNewRental(Long id, String name, Double surface, Double price, String description, MultipartFile picture);
+    Map<String, String> putExistingRental(Long id, String name, Double surface, Double price, String description);
+    Map<String, String> postNewRental(Long id, String name, Double surface, Double price, String description, MultipartFile picture);
 }
 

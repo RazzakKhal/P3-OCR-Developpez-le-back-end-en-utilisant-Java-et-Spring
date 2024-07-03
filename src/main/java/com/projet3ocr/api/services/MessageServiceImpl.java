@@ -7,13 +7,14 @@ import com.projet3ocr.api.models.User;
 import com.projet3ocr.api.repositories.MessageRepository;
 import com.projet3ocr.api.repositories.RentalRepository;
 import com.projet3ocr.api.repositories.UserRepository;
-import com.projet3ocr.api.responses.MessagesResponses;
+import com.projet3ocr.api.responses.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -27,9 +28,7 @@ public class MessageServiceImpl implements MessageService{
     @Autowired
     MessageMapper messageMapper;
     @Override
-    public HashMap<String, String> postMessage(SendMessageDto sendMessageDto){
-        HashMap<String, String> response = new HashMap<>();
-
+    public Map<String, String> postMessage(SendMessageDto sendMessageDto){
         Optional<User> optUser = userRepository.findById(sendMessageDto.getUserId());
         Optional<Rental> optRental = rentalRepository.findById(sendMessageDto.getRentalId());
 
@@ -38,7 +37,7 @@ public class MessageServiceImpl implements MessageService{
         }
 
         messageRepository.save(messageMapper.toEntity(sendMessageDto, optUser.get(), optRental.get()));
-        response.put("message", MessagesResponses.SENDED_MESSAGE.getValue());
-        return response;
+        return new ApiResponseWithString<EnumKey, EnumResponse>(KeysResponsesEnum.MESSAGE_KEY, MessageResponsesEnum.SENDED_MESSAGE).getResponse();
+
     }
 }

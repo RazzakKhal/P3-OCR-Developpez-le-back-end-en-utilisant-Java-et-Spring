@@ -11,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/api/rentals")
@@ -18,7 +20,7 @@ public class RentalController {
     @Autowired
     RentalService rentalService;
     @GetMapping("")
-    HashMap<String,List<RentalDto>> getAllRentals(){
+    Map<String,List<RentalDto>> getAllRentals(){
         return rentalService.getAllRentals();
     }
     @GetMapping("/{id}")
@@ -26,18 +28,17 @@ public class RentalController {
         return rentalService.getRentalById(id);
     }
     @PostMapping("/{id}")
-    HashMap<String,String> postRental(@PathVariable Long id,
+    Map<String,String> postRental(@PathVariable Long id,
                                       @RequestParam("name") String name,
                                       @RequestParam("surface") Double surface,
                                       @RequestParam("price") Double price,
                                       @RequestParam("description") String description,
                                       @RequestParam("picture") MultipartFile picture ){
-        HashMap<String,String> response = new HashMap<>();
-        response.put("test", description);
+
         return rentalService.postNewRental(id, name, surface, price, description, picture);
     }
     @PutMapping("/{id}")
-    HashMap<String,String> putRental(@PathVariable Long id,
+    Map<String,String> putRental(@PathVariable Long id,
                                      @RequestParam("name") String name,
                                      @RequestParam("surface") Double surface,
                                      @RequestParam("price") Double price,

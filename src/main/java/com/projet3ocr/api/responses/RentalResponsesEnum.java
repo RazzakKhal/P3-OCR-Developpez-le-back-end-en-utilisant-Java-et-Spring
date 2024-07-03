@@ -1,6 +1,6 @@
 package com.projet3ocr.api.responses;
 
-public enum RentalResponses {
+public enum RentalResponsesEnum implements EnumResponse{
 
     NOT_FOUNDED_RENTAL("Rental not found !"),
     CREATED_RENTAL("Rental created !"),
@@ -10,10 +10,10 @@ public enum RentalResponses {
     IMAGE_PROBLEM("A problem occurred during image processing");
 
     private final String value;
-    RentalResponses(String value){
+    RentalResponsesEnum(String value){
         this.value = value;
     }
-
+    @Override
     public String getValue(){
         return this.value;
     }

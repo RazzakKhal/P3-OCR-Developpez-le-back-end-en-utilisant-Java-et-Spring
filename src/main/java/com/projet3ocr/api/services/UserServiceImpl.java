@@ -4,7 +4,7 @@ import com.projet3ocr.api.dtos.sendToView.UserDto;
 import com.projet3ocr.api.mappers.UserMapper;
 import com.projet3ocr.api.models.User;
 import com.projet3ocr.api.repositories.UserRepository;
-import com.projet3ocr.api.responses.UsersResponses;
+import com.projet3ocr.api.responses.UserResponsesEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService{
 
         Optional<User> user = userRepository.findById(id);
         if(user.isEmpty()){
-           throw new ResponseStatusException(HttpStatus.NOT_FOUND, UsersResponses.NOT_FOUNDED_USER.getValue());
+           throw new ResponseStatusException(HttpStatus.NOT_FOUND, UserResponsesEnum.NOT_FOUNDED_USER.getValue());
         }
         return userMapper.toDto(user.get());
     }

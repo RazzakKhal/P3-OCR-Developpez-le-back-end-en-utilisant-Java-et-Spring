@@ -27,6 +27,12 @@ public class MessageServiceImpl implements MessageService{
     MessageRepository messageRepository;
     @Autowired
     MessageMapper messageMapper;
+
+    /**
+     * créer un message en Bdd
+     * @param sendMessageDto
+     * @return
+     */
     @Override
     public Map<String, String> postMessage(SendMessageDto sendMessageDto){
         Optional<User> optUser = userRepository.findById(sendMessageDto.getUserId());

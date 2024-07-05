@@ -22,7 +22,7 @@ import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
-public class SpringSecurityConfig {
+public class SpringSecurityConfig{
 
     @Autowired
     TokenFilter tokenFilter;
@@ -32,10 +32,14 @@ public class SpringSecurityConfig {
          http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/api/auth/register","/api/auth/login","/upload/**","/swagger-ui/**", "/v3/api-docs/**","/swagger-ui.html").permitAll()
+                        .requestMatchers("/api/auth/register","/api/auth/login","/upload/**","/swagger-ui/**","/v3/api-docs/**").permitAll()
                         .anyRequest().authenticated()
+
                 )
+                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                 .formLogin(form -> form.disable())
                 .addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
 
     }

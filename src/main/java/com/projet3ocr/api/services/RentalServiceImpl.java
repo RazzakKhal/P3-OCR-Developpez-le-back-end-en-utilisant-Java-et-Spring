@@ -44,7 +44,7 @@ public class RentalServiceImpl implements RentalService{
     }
 
     /**
-     *
+     * récupère une location à partir de son id
      * @param id id de la location à récupérer
      * @return
      */
@@ -58,7 +58,7 @@ public class RentalServiceImpl implements RentalService{
     }
 
     /**
-     * Si utilisateur fourni depuis la path variable existe alors on créé notre Location
+     * Si utilisateur récupuré depuis l'id de la variable de chemin existe alors on créé notre Location
      * @param id id de l'utilisateur a qui appartient la location
      * @param name
      * @param surface
@@ -88,7 +88,7 @@ public class RentalServiceImpl implements RentalService{
     }
 
     /**
-     * Si location fourni depuis la path variable existe et a été modifié alors on l'update en BDD
+     * Si location récuépré  depuis l'id de la path variable existe et a été modifié alors on l'update en BDD
      * @param id id de la location à modifier
      * @param
      * @return

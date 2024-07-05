@@ -32,6 +32,12 @@ public class AuthServiceImpl implements AuthService{
     UserRepository userRepository;
     @Autowired
     PasswordSalter passwordSalter;
+
+    /**
+     * permet la creation d'un utulisateur si il n'existe pas déjà en BDD, et la connexion en retournant le token
+     * @param registerUserDto
+     * @return
+     */
     @Override
     public Map<String, String> createUser(RegisterUserDto registerUserDto){
         if(userRepository.findByEmail(registerUserDto.getEmail()).isPresent()){
@@ -43,6 +49,12 @@ public class AuthServiceImpl implements AuthService{
         String token = jwtUtil.generateToken(user);
         return new ApiResponseWithToken<EnumKey>(KeysResponsesEnum.TOKEN_KEY, token).getResponse();
     }
+
+    /**
+     * permet la connexion de l'utilisateur en lui retournant un token si la combinaison id/mdp est correct
+     * @param loginUserDto
+     * @return
+     */
     @Override
     public Map<String, String> loginUser(LoginUserDto loginUserDto){
         User user = userMapper.toEntity(loginUserDto);
@@ -54,6 +66,11 @@ public class AuthServiceImpl implements AuthService{
         return new ApiResponseWithToken<EnumKey>(KeysResponsesEnum.TOKEN_KEY, token).getResponse();
     }
 
+    /**
+     * retourne l'utilisateur actuellement connecté
+     * @param principal
+     * @return
+     */
     @Override
     public UserDto getMe(Object principal){
         return userMapper.toDto((User) principal);

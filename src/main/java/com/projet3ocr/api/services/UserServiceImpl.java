@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService{
     UserRepository userRepository;
 
     /**
-     * Récupère un utilisateur à partir de son id et si il existe en bdd retourne toutes ses infos sauf password
+     * Récupère un utilisateur à partir de son id et si il existe en bdd retourne toutes ses infos sauf son mot de passe
      * @param id
      * @return
      */

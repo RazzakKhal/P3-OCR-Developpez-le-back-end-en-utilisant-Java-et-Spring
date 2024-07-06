@@ -20,6 +20,7 @@ Documentation de l'API
 La documentation de l'API est disponible à l'adresse suivante :
 http://localhost:3001/swagger-ui/index.html
 
+l'installation de mysql est requise et il est nécessaire de le lancer sur le port 3306 afin qu'au lancement de l'application la bdd soit générées
 
 Dépendances
 L'application utilise les dépendances suivantes :
